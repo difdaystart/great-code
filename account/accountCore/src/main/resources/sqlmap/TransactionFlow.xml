@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="TransactionFlow">
+
+	<resultMap type="TransactionFlow" id="TransactionFlowResultMap">
+		<id property="id" column="ID" javaType="long" />
+		<result property="flowNum" column="FLOW_ID" javaType="String" />
+		<result property="accountNo" column="ACCOUNT_NO" javaType="String" />
+		<result property="initiator" column="INITIATOR" javaType="String" />
+		<result property="tradeType" column="TRADE_TYPE" javaType="String"/>
+		<result property="createDate" column="CREATE_DATE" javaType="java.util.Date" />
+		<result property="description" column="DESCRIPTION" javaType="String" />
+	</resultMap>
+
+	<insert id="insertTransactionFlow" parameterType="TransactionFlow">
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+			SELECT
+			SEQ_ACCOUNT_TRANSACTIONFLOW.nextVal
+			AS
+			SERIAL FROM DUAL
+		</selectKey>
+		insert into TBL_TRANSACTION_FLOW
+		(
+			ID,FLOW_ID,ACCOUNT_NO,INITIATOR,TRADE_TYPE,CREATE_DATE,DESCRIPTION
+		)
+		values
+		(
+			#{id,jdbcType=BIGINT},
+			#{flowNum,jdbcType=VARCHAR},
+			#{accountNo,jdbcType=VARCHAR},
+			#{initiator,jdbcType=VARCHAR},
+			#{tradeType,jdbcType=VARCHAR},
+			#{createDate,jdbcType=TIMESTAMP},
+			#{description,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="isExistRecordByFlowId" parameterType="java.lang.String" resultType="string">
+		select a.FLOW_ID from TBL_TRANSACTION_FLOW a where a.FLOW_ID =  #{tradeFlowId}
+	</select>
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="QuotaLimitChangeRule">
+
+	<resultMap type="QuotaLimitChangeRule" id="QuotaLimitChangeRuleMap">
+		<id property="id" column="ID" javaType="long" />
+		<result property="tradeType" column="TRADE_TYPE" />
+		<result property="changeDirection" column="DIRECTION"
+			jdbcType="VARCHAR" javaType="com.esinotrans.payment.account.enums.FundChangeDirectionEnum"/>
+		<result property="quotaType" column="QUOTA_TYPE"
+			jdbcType="VARCHAR" javaType="com.esinotrans.payment.account.enums.QuotaTypeEnum"/>		
+	</resultMap>
+	
+	<insert id="insertQuotaLimitChangeRule" parameterType="QuotaLimitChangeRule">
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+			SELECT
+			SEQ_ACCOUNT_LIMITCHANGERULE.nextVal
+			AS
+			SERIAL FROM DUAL
+		</selectKey>
+		insert into TBL_QUOTA_LIMIT_CHANGE_RULE(ID, TRADE_TYPE,DIRECTION,QUOTA_TYPE) 
+		values(
+			#{id,jdbcType=BIGINT},
+			#{tradeType,jdbcType=VARCHAR},
+			#{changeDirection,jdbcType=VARCHAR,javaType=com.esinotrans.payment.account.enums.FundChangeDirectionEnum},
+			#{quotaType,jdbcType=VARCHAR,javaType=com.esinotrans.payment.account.enums.QuotaTypeEnum}
+		)
+	</insert>
+	
+	<select id="queryQuotaLimitChangeRule" parameterType="string" resultMap="QuotaLimitChangeRuleMap">
+		select * from TBL_QUOTA_LIMIT_CHANGE_RULE where TRADE_TYPE = #{tradeType}
+	</select>
+	
+	<select id="getAll" resultMap="QuotaLimitChangeRuleMap">
+		select ID, DIRECTION, QUOTA_TYPE, TRADE_TYPE from TBL_QUOTA_LIMIT_CHANGE_RULE
+	</select>
+	
+</mapper>

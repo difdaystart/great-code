@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+    PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
+    "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration>
+
+	<!-- These settings control SqlMapClient configuration details, primarily 
+		to do with transaction management -->
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="aggressiveLazyLoading" value="false" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="defaultStatementTimeout" value="25000" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias alias="AccountFrozenRecord"
+			type="com.esinotrans.payment.account.entity.AccountFrozenRecord" />
+		<typeAlias alias="AccountHistory"
+			type="com.esinotrans.payment.account.entity.AccountHistory" />
+		<typeAlias alias="AccountManagementRecord"
+			type="com.esinotrans.payment.account.entity.AccountManagementRecord" />
+		<typeAlias alias="AccountProvider"
+			type="com.esinotrans.payment.account.entity.AccountProvider" />
+		<typeAlias alias="FundFrozenUnFrozenHistory"
+			type="com.esinotrans.payment.account.entity.FundFrozenUnFrozenHistory" />
+		<typeAlias alias="FundFrozenUnFrozenRecord"
+			type="com.esinotrans.payment.account.entity.FundFrozenUnFrozenRecord" />
+		<typeAlias alias="Account"
+			type="com.esinotrans.payment.account.entity.Account" />
+		<typeAlias alias="QuotaLimitChangeRule"
+			type="com.esinotrans.payment.account.entity.QuotaLimitChangeRule" />
+		<typeAlias alias="TransactionFlow"
+			type="com.esinotrans.payment.account.entity.TransactionFlow" />
+		<typeAlias alias="AccountTradeType"
+			type="com.esinotrans.payment.account.entity.AccountTradeType" />
+		<typeAlias alias="AccountSerialNum"
+			type="com.esinotrans.payment.account.entity.AccountSerialNum" />
+		<typeAlias alias="AccountSnapshot"
+			type="com.esinotrans.payment.account.entity.AccountSnapshot" />
+		<typeAlias alias="SelfCheckTask"
+			type="com.esinotrans.payment.account.entity.SelfCheckTask" />
+		<typeAlias alias="SelfCheckFailureDetail"
+			type="com.esinotrans.payment.account.entity.SelfCheckFailureDetail" />
+	</typeAliases>
+
+	<!-- Identify all SQL Map XML files to be loaded by this SQL map. -->
+	<!-- <mappers> -->
+	<!-- <mapper resource="sqlmap/AccountHistory.xml" /> -->
+	<!-- <mapper resource="sqlmap/AccountManagementRecord.xml" /> -->
+	<!-- <mapper resource="sqlmap/AccountProvider.xml" /> -->
+	<!-- <mapper resource="sqlmap/FundFrozenUnFrozenHistory.xml" /> -->
+	<!-- <mapper resource="sqlmap/FundFrozenUnFrozenRecord.xml" /> -->
+	<!-- <mapper resource="sqlmap/Account.xml" /> -->
+	<!-- <mapper resource="sqlmap/QuotaLimitChangeRule.xml" /> -->
+	<!-- <mapper resource="sqlmap/TransactionFlow.xml" /> -->
+	<!-- <mapper resource="sqlmap/AccountSerialNum.xml" /> -->
+	<!-- <mapper resource="sqlmap/AccountFrozenRecord.xml" /> -->
+	<!-- <mapper resource="sqlmap/AccountTradeType.xml" /> -->
+	<!-- <mapper resource="sqlmap/AccountSnapshot.xml" /> -->
+	<!-- <mapper resource="sqlmap/SelfCheckTask.xml" /> -->
+	<!-- <mapper resource="sqlmap/SelfCheckFailureDetail.xml" /> -->
+	<!-- </mappers> -->
+
+	<mappers>
+		<mapper resource="mySqlmap/AccountHistory.xml" />
+		<mapper resource="mySqlmap/AccountManagementRecord.xml" />
+		<mapper resource="mySqlmap/AccountProvider.xml" />
+		<mapper resource="mySqlmap/FundFrozenUnFrozenHistory.xml" />
+		<mapper resource="mySqlmap/FundFrozenUnFrozenRecord.xml" />
+		<mapper resource="mySqlmap/Account.xml" />
+		<mapper resource="mySqlmap/QuotaLimitChangeRule.xml" />
+		<mapper resource="mySqlmap/TransactionFlow.xml" />
+		<mapper resource="mySqlmap/AccountSerialNum.xml" />
+		<mapper resource="mySqlmap/AccountFrozenRecord.xml" />
+		<mapper resource="mySqlmap/AccountTradeType.xml" />
+		<mapper resource="mySqlmap/AccountSnapshot.xml" />
+		<mapper resource="mySqlmap/SelfCheckTask.xml" />
+		<mapper resource="sqlmap/SelfCheckFailureDetail.xml" />
+	</mappers>
+
+</configuration>

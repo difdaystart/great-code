@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="AccountSnapshot">
+
+	<insert id="insertAccountSnapshot" parameterType="AccountSnapshot">
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+			SELECT
+			SEQ_ACCOUNT_SNAPSHOT.nextVal
+			AS
+			SERIAL FROM DUAL
+		</selectKey>
+		insert into TBL_ACCOUNT_SNAPSHOT
+		(
+			ID, ACCOUNT_NO, BALANCE, SNAP_DATE
+		)
+		values
+		(
+			#{id,jdbcType=BIGINT},
+			#{accountNo,jdbcType=VARCHAR},
+			#{balance,jdbcType=DECIMAL},
+			#{snapDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+</mapper>

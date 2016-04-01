@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="AccountSerialNum">
+	
+	<resultMap type="AccountSerialNum" id="AccountSerialNumMap">
+		<id property="id" column="ID" javaType="long" />
+		<result property="flowId" column="FLOW_ID" />
+		<result property="prefixNum" column="PREFIX_NUM" />
+		<result property="accountSystemType" column="ACCOUNT_SYS_TYPE" />
+	</resultMap>
+
+	<select id="getAccountSerialNum" parameterType="java.lang.String" resultMap="AccountSerialNumMap">
+		select * from TBL_ACCOUNT_SERIAL where ACCOUNT_SYS_TYPE = #{accountSystemType} FOR UPDATE
+	</select>
+	
+	<update id="update" parameterType="AccountSerialNum">
+		update TBL_ACCOUNT_SERIAL set FLOW_ID = #{flowId} where ACCOUNT_SYS_TYPE = #{accountSystemType}
+	</update>
+	
+	<insert id="insertAccountSerialNum" parameterType="AccountSerialNum">
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+			SELECT
+			SEQ_ACCOUNT_SERIALNUM.nextVal
+			AS
+			SERIAL FROM DUAL
+		</selectKey>
+		insert into TBL_ACCOUNT_SERIAL(ID,FLOW_ID,PREFIX_NUM,ACCOUNT_SYS_TYPE) 
+		values
+		(
+			#{id,jdbcType=BIGINT},
+			#{flowId,jdbcType=BIGINT},
+			#{prefixNum,jdbcType=VARCHAR},
+			#{accountSystemType,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+</mapper>

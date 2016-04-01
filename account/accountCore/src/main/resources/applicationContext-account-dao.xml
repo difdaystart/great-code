@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+	<bean id="accountDao" class="com.esinotrans.payment.account.dao.impl.AccountDaoImpl" parent="baseDao" />
+	<bean id="serialNumDao" class="com.esinotrans.payment.account.dao.impl.SerialNumDaoImpl" parent="baseDao" />
+	<bean id="accountManagementRecordDao" class="com.esinotrans.payment.account.dao.impl.AccountManagementRecordDaoImpl" parent="baseDao" />
+	<bean id="accountHistoryDao" class="com.esinotrans.payment.account.dao.impl.AccountHistoryDaoImpl" parent="baseDao"/>
+	<bean id="transactionFlowDao" class="com.esinotrans.payment.account.dao.impl.TransactionFlowDaoImpl" parent="baseDao"/>
+	<bean id="fundFrozenUnFrozenRecordDao" class="com.esinotrans.payment.account.dao.impl.FundFrozenUnFrozenRecordDaoImpl" parent="baseDao"/>
+	<bean id="fundFrozenUnFrozenHistoryDao" class="com.esinotrans.payment.account.dao.impl.FundFrozenUnFrozenHistoryDaoImpl" parent="baseDao"/>
+	<bean id ="accountFrozenRecordDao" class ="com.esinotrans.payment.account.dao.impl.AccountFrozenRecordDaoImpl" parent="baseDao"/>
+	<bean id ="accountTradeTypeDao" class ="com.esinotrans.payment.account.dao.impl.AccountTradeTypeDaoImpl" parent="baseDao"/>
+	<bean id ="accountProviderDao" class ="com.esinotrans.payment.account.dao.impl.AccountProviderDaoImpl" parent="baseDao"/>
+	<bean id ="accountSnapshotDao" class ="com.esinotrans.payment.account.dao.impl.AccountSnapshotDaoImpl" parent="baseDao"/>
+	<bean id ="selfCheckTaskDao" class ="com.esinotrans.payment.account.dao.impl.SelfCheckTaskDaoImpl" parent="baseDao"/>
+	<bean id ="selfCheckFailureDetailDao" class ="com.esinotrans.payment.account.dao.impl.SelfCheckFailureDetailDaoImpl" parent="baseDao"/>
+	
+	<bean id="quotaLimitChangeRuleDao" class="com.esinotrans.payment.account.dao.impl.QuotaLimitChangeRuleDaoImpl" parent="baseDao"/>
+	
+	<!-- 
+	<bean id="quotaLimitChangeRuleDaoTarget" class="com.esinotrans.payment.account.dao.impl.QuotaLimitChangeRuleDaoImpl" parent="baseDao"/>
+	
+	<bean id="quotaLimitChangeRuleDao"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target">
+			<ref bean="quotaLimitChangeRuleDaoTarget"/>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>cacheInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	 -->
+</beans>

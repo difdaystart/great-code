@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="AccountType">
+	<resultMap type="AccountType" id="AccountTypeMap">
+		<id property="id" column="ID" javaType="long" />
+		<result property="code" column="TYPE_CODE" javaType="String" />
+		<result property="name" column="TYPE_NAME" javaType="String" />
+		<association property="currency" column="CURRENCY_ID"
+			javaType="Currency" select="Currency.findCurrencyByID" />
+		<association property="provider" column="PROVIDER_ID"
+			javaType="AccountProvider" select="AccountProvider.findAccountProviderByID" />
+		<collection property="rules" column="ID"
+			ofType="QuotaLimitChangeRule" select="QuotaLimitChangeRule.findQuotaLimitChangeRuleByAccountTypeID"/>
+	</resultMap>
+
+	<select id="findAccountTypeByID" parameterType="java.lang.Long"
+		resultMap="AccountTypeMap">
+		select * from TBL_ACCOUNT_TYPE where ID = #{value}
+	</select>
+
+	<select id="findAccountTypeByCode" parameterType="java.lang.String"
+		resultMap="AccountTypeMap">
+		select * from TBL_ACCOUNT_TYPE where TYPE_CODE = #{value}
+	</select>
+
+</mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="AccountFrozenRecord">
+	<resultMap id="accountFrozenRecordResultMap" type="AccountFrozenRecord">
+		<id property="id" column="id" />
+		<result property="tradeFlowId" column="TRADE_FLOW_ID" />
+		<result property="accountNo" column="ACCOUNT_NO" />
+		<result property="initiator" column="INITIATOR"/>
+		<result property="operationType" column="OPERATE_TYPE"
+			jdbcType="VARCHAR" javaType="com.esinotrans.payment.account.enums.AccountOperationEnum"/>
+		<result property="credential" column="CREDENTIAL"/>
+		<result property="lastModifyDate" column="MODIFY_DATE" javaType="java.util.Date"/>
+		<result property="autoUnfrozenDate" column="UNFROZEN_DATE" javaType="java.util.Date"/>
+		<result property="reason" column="REASON" />
+		<result property="describe" column="DESCRIBE" />
+		<result property="createDate" column="CREATE_DATE" />
+	</resultMap>
+	
+	<insert id="insertAccountFrozenRecord" parameterType="AccountFrozenRecord">
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+			SELECT
+			SEQ_ACCOUNT_FROZENRECORD.nextVal
+			AS
+			SERIAL FROM DUAL
+		</selectKey>
+		insert into TBL_ACCOUNT_FROZEN_RECORD
+		( 
+		 ID, TRADE_FLOW_ID, ACCOUNT_NO,INITIATOR, OPERATE_TYPE,CREDENTIAL,MODIFY_DATE,UNFROZEN_DATE,REASON,DESCRIBE,CREATE_DATE
+		)
+		values
+		(
+			#{id,jdbcType=BIGINT},
+			#{tradeFlowId,jdbcType=VARCHAR},
+			#{accountNo,jdbcType=VARCHAR},
+			#{initiator,jdbcType=VARCHAR},
+			#{operationType,jdbcType=VARCHAR,javaType=com.esinotrans.payment.account.enums.AccountOperationEnum},
+			#{credential,jdbcType=VARCHAR},
+			#{lastModifyDate,jdbcType=TIMESTAMP},
+			#{autoUnfrozenDate,jdbcType=TIMESTAMP},
+			#{reason,jdbcType=VARCHAR},
+			#{describe,jdbcType=VARCHAR},
+			#{createDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<select id="queryAccountFrozenRecord" parameterType="java.util.Map" resultMap="accountFrozenRecordResultMap">
+		select * from TBL_ACCOUNT_FROZEN_RECORD a where a.ACCOUNT_NO = #{accountNo} and a.INITIATOR=#{initiator}
+	</select>
+	
+	<select id="queryAccountFrozenRecordByAccountNo" parameterType="string" resultMap="accountFrozenRecordResultMap">
+		select * from TBL_ACCOUNT_FROZEN_RECORD a where a.ACCOUNT_NO = #{accountNo}
+	</select>
+	
+	<select id="queryAccountFrozenRecordByCredential" parameterType="String" resultMap="accountFrozenRecordResultMap">
+		select * from TBL_ACCOUNT_FROZEN_RECORD a where a.CREDENTIAL = #{credential}
+	</select>
+	
+	<select id="queryAccountFrozenRecordsByUnfrozenDate" parameterType="date" resultMap="accountFrozenRecordResultMap">
+		<![CDATA[
+			select * from TBL_ACCOUNT_FROZEN_RECORD a where a.UNFROZEN_DATE <= #{unfrozenDate} order by ACCOUNT_NO
+		]]>
+	</select>
+	
+	<update id="updateAccountFrozenRecord" parameterType="AccountFrozenRecord">
+		update  TBL_ACCOUNT_FROZEN_RECORD a
+		
+		<set>
+			<if test="operationType != null">a.OPERATE_TYPE = #{operationType,jdbcType=VARCHAR,javaType=com.esinotrans.payment.account.enums.AccountOperationEnum},</if>
+			a.UNFROZEN_DATE = #{autoUnfrozenDate,jdbcType=TIMESTAMP},
+			a.MODIFY_DATE=#{lastModifyDate,jdbcType=TIMESTAMP}
+		</set>
+		where a.CREDENTIAL = #{credential}
+	</update>
+	
+	<delete id="deleteAccountFrozenRecord" parameterType="AccountFrozenRecord">
+		delete from TBL_ACCOUNT_FROZEN_RECORD a 
+		where a.CREDENTIAL = #{credential}
+	</delete>
+</mapper>

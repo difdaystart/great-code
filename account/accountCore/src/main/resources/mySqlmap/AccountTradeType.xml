@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="AccountTradeType">
+	<resultMap type="AccountTradeType" id="AccountTradeTypeMap">
+		<id property="id" column="ID" javaType="long" />
+		<result property="typeCode" column="TYPE_CODE"/>
+		<result property="typeName" column="TYPE_NAME"/>
+	</resultMap>
+
+	<select id="findAccountTradeTypeByID" parameterType="java.lang.Long"
+		resultMap="AccountTradeTypeMap">
+		select * from TBL_ACCOUNT_TRADE_TYPE where ID = #{value}
+	</select>
+
+	<select id="findAccountTradeTypeByCode" parameterType="java.lang.Integer"
+		resultMap="AccountTradeTypeMap">
+		select * from TBL_ACCOUNT_TRADE_TYPE where TYPE_CODE = #{value}
+	</select>
+	
+	<insert id="insertAccountTradeType" parameterType="AccountTradeType">
+		insert into TBL_ACCOUNT_TRADE_TYPE(TYPE_NAME,TYPE_CODE) 
+		values(
+			#{typeName, jdbcType=VARCHAR},
+			#{typeCode, jdbcType=SMALLINT}
+			)
+	</insert>
+
+</mapper>

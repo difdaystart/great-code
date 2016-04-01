@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="AccountSnapshot">
+
+	<insert id="insertAccountSnapshot" parameterType="AccountSnapshot">
+		insert into TBL_ACCOUNT_SNAPSHOT
+		(
+			ACCOUNT_NO, BALANCE, SNAP_DATE
+		)
+		values
+		(
+			#{accountNo,jdbcType=VARCHAR},
+			#{balance,jdbcType=DECIMAL},
+			#{snapDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+</mapper>

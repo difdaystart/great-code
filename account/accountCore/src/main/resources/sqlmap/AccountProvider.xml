@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="AccountProvider">
+	<resultMap type="AccountProvider" id="AccountProviderResultMap">
+		<id property="id" column="ID" javaType="long" />
+		<result property="customerID" column="CUSTOMER_ID"  />
+		<result property="providerName" column="PROVIDER_NAME" />
+		<result property="providerCode" column="PROVIDER_CODE" />
+		<result property="description" column="DESCRIPTION" />
+	</resultMap>
+	
+	<select id="findAccountProviderByCode" parameterType="string" 
+		resultMap="AccountProviderResultMap">
+		select * from TBL_ACCOUNT_PROVIDER where PROVIDER_CODE = #{providerCode}
+	</select>
+	
+	<select id="findAccountProviderById" parameterType="long" 
+		resultMap="AccountProviderResultMap">
+		select * from TBL_ACCOUNT_PROVIDER where ID = #{id}
+	</select>
+	
+</mapper>

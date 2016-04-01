@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="FundFrozenUnFrozenRecord">
+	<resultMap id="fundFrozenUnFrozenRecordResultMap" type="FundFrozenUnFrozenRecord">
+		<id property="id" column="id" />
+		<result property="tradeFlowId" column="TRADE_FLOW_ID" />
+		<result property="accountNo" column="ACCOUNT_NO" />
+		<result property="initiator" column="INITIATOR"/>
+		<result property="createDate" column="CREATE_DATE" javaType="java.util.Date"/>
+		<result property="operationType" column="OPERATE_TYPE"
+			jdbcType="VARCHAR" javaType="com.esinotrans.payment.account.enums.AccountOperationEnum"/>
+		<result property="frozenAmount" column="FROZEN_AMOUNT" javaType="java.math.BigDecimal"/>
+		<result property="unfrozenAmount" column="UNFROZEN_AMOUNT" javaType="java.math.BigDecimal"/>
+		<result property="credential" column="CREDENTIAL"/>
+		<result property="lastModifyDate" column="MODIFY_DATE" javaType="java.util.Date"/>
+		<result property="autoUnfrozenDate" column="UNFROZEN_DATE" javaType="java.util.Date"/>
+		<result property="serialNum" column="SERIAL_NUM" />
+		<result property="version" column="VERSION" />
+		<result property="comment" column="DECRIPTION" />
+	</resultMap>
+	
+	<insert id="insertFundFrozenRecord" parameterType="FundFrozenUnFrozenRecord">
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+			SELECT
+			SEQ_ACCOUNT_FUNDFROZENRECORD.nextVal
+			AS
+			SERIAL FROM DUAL
+		</selectKey>
+		insert into TBL_FUND_FROZEN_RECORD
+		( 
+			ID, TRADE_FLOW_ID, ACCOUNT_NO, INITIATOR, CREATE_DATE, OPERATE_TYPE, FROZEN_AMOUNT, 
+			UNFROZEN_AMOUNT, CREDENTIAL, MODIFY_DATE, UNFROZEN_DATE, SERIAL_NUM, VERSION,DECRIPTION
+		)
+		values
+		(
+			#{id,jdbcType=BIGINT},
+			#{tradeFlowId,jdbcType=VARCHAR},
+			#{accountNo,jdbcType=VARCHAR},
+			#{initiator,jdbcType=VARCHAR},
+			#{createDate,jdbcType=TIMESTAMP},
+			#{operationType,jdbcType=VARCHAR,javaType=com.esinotrans.payment.account.enums.AccountOperationEnum},
+			#{frozenAmount,jdbcType=DECIMAL},
+			#{unfrozenAmount,jdbcType=DECIMAL},
+			#{credential,jdbcType=VARCHAR},
+			#{lastModifyDate,jdbcType=TIMESTAMP},
+			#{autoUnfrozenDate,jdbcType=TIMESTAMP},
+			#{serialNum,jdbcType=BIGINT},
+			#{version,jdbcType=BIGINT},
+			#{comment,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="queryRecordByCredential" parameterType="java.lang.String" resultMap="fundFrozenUnFrozenRecordResultMap">
+		select * from TBL_FUND_FROZEN_RECORD a where a.CREDENTIAL = #{credential} 
+	</select>
+	
+	<select id="queryAllAutoUnfrozenFundRecords"  parameterType="java.util.Date" resultMap="fundFrozenUnFrozenRecordResultMap">
+		<![CDATA[
+			select * from TBL_FUND_FROZEN_RECORD record 
+			where record.UNFROZEN_DATE <= #{autoUnfrozenDate} and record.FROZEN_AMOUNT != record.UNFROZEN_AMOUNT 
+		]]>
+	</select>
+	
+	<select id="queryUnfrozenFundRecords" parameterType="java.lang.String" resultMap="fundFrozenUnFrozenRecordResultMap">
+		select * from TBL_FUND_FROZEN_RECORD a where a.ACCOUNT_NO = #{accountNo} 
+	</select>
+	
+	<update id="updateFundFrozenUnFrozenRecord" parameterType="FundFrozenUnFrozenRecord">
+		update TBL_FUND_FROZEN_RECORD
+		<set>
+			<if test="unfrozenAmount != null">UNFROZEN_AMOUNT = #{unfrozenAmount,jdbcType=DECIMAL},</if>
+			<if test="lastModifyDate != null">MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP},</if>
+			<if test="autoUnfrozenDate != null">UNFROZEN_DATE = #{autoUnfrozenDate,jdbcType=TIMESTAMP},</if>
+			<if test="version != null">VERSION = #{version}+1</if>
+		</set>
+		where id = #{id}
+		<if test="version != null"> and VERSION = #{version}</if>
+	</update>
+	
+	<update id="updateAutoUnfrozenDate" parameterType="java.util.Map">
+		update TBL_FUND_FROZEN_RECORD f
+		set f.UNFROZEN_DATE = #{autoUnfrozenDate,jdbcType=TIMESTAMP}
+		where f.CREDENTIAL = #{credential} and f.ACCOUNT_NO =#{accountNo}
+	</update>
+	
+</mapper>

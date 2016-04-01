@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="SelfCheckTask">
+
+	<insert id="insertSelfCheckTask" parameterType="SelfCheckTask">
+		insert into TBL_SELF_CHECK_TASK
+		(
+			 TASK_NO, START_DATE, END_DATE, CHECK_TYPE, STATUS, FAILURE_NUM, SUCCESS_ACCOUNT_NUM, CREATE_DATE, REMARK
+		)
+		values
+		(
+			#{taskNo,jdbcType=VARCHAR},
+			#{startDate,jdbcType=TIMESTAMP},
+			#{endDate,jdbcType=TIMESTAMP},
+			#{checkType,jdbcType=VARCHAR},
+			#{status,jdbcType=VARCHAR,javaType=com.esinotrans.payment.account.enums.SelfCheckTaskStatusEnum},
+			#{failureNum,jdbcType=SMALLINT},
+			#{successAccountNum,jdbcType=BIGINT},
+			#{createDate,jdbcType=TIMESTAMP},
+			#{remark,jdbcType=VARCHAR}
+		)
+	</insert>
+</mapper>

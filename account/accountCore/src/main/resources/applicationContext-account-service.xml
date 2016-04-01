@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	 <!-- 账户管理服务 service -->
+	 <bean id="accountManagementService" class="com.esinotrans.payment.account.service.impl.AccountManagementServiceImpl">
+	 	<property name="accountDao">
+	 		<ref bean="accountDao"/>
+	 	</property>
+	 	<property name="accountNumberGenerator">
+	 		<ref bean="accountNumberGenerator"/>
+	 	</property>
+	 	<property name="accountManagementRecordDao">
+	 		<ref bean="accountManagementRecordDao"/>
+	 	</property>
+	 	<property name="accountFrozenRecordDao">
+	 		<ref bean="accountFrozenRecordDao"/>
+	 	</property>
+	 	<property name="accountProviderDao">
+	 		<ref bean="accountProviderDao"/>
+	 	</property>
+	 	<property name="accountTransactionService">
+	 		<ref bean="accountTransactionService"/>
+	 	</property>
+	 	<property name="accountSnapshotDao">
+	 		<ref bean="accountSnapshotDao"/>
+	 	</property>
+	 </bean> 
+	 
+	<!-- 账户查询服务 service
+	<bean id="accountQueryService"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target">
+			<ref bean="accountQueryServiceTarget"/>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>cacheInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	 <bean id="accountQueryServiceTarget" class="com.esinotrans.payment.account.service.impl.AccountQueryServiceImpl">
+	 	<property name="accountDao">
+	 		<ref bean="accountDao"/>
+	 	</property>
+	 	<property name="accountHistoryDao">
+	 		<ref bean="accountHistoryDao"/>
+	 	</property>
+	 	<property name="fundFrozenUnFrozenRecordDao">
+	 		<ref bean="fundFrozenUnFrozenRecordDao"/>
+	 	</property>
+	 	<property name="accountProviderDao">
+	 		<ref bean="accountProviderDao"/>
+	 	</property>
+	 	<property name="accountFrozenRecordDao">
+	 		<ref bean="accountFrozenRecordDao"/>
+	 	</property>
+	 </bean> 
+	
+	  -->
+	  
+	 <bean id="accountQueryService" class="com.esinotrans.payment.account.service.impl.AccountQueryServiceImpl">
+	 	<property name="accountDao">
+	 		<ref bean="accountDao"/>
+	 	</property>
+	 	<property name="accountHistoryDao">
+	 		<ref bean="accountHistoryDao"/>
+	 	</property>
+	 	<property name="fundFrozenUnFrozenRecordDao">
+	 		<ref bean="fundFrozenUnFrozenRecordDao"/>
+	 	</property>
+	 	<property name="accountProviderDao">
+	 		<ref bean="accountProviderDao"/>
+	 	</property>
+	 </bean> 
+	 
+	<!-- 账户交易服务 service -->
+	<bean id="accountTransactionService" class="com.esinotrans.payment.account.service.impl.AccountTransactionServiceImpl">
+		<property name="accountDao">
+			<ref bean="accountDao"/>
+		</property>
+		<property name="accountHistoryDao">
+			<ref bean="accountHistoryDao"/>
+		</property>
+		<property name="quotaLimitChangeRuleProcessor">
+			<ref bean="quotaLimitChangeRuleProcessor"/>
+		</property>
+		<property name="accountSnapshotDao">
+			<ref bean="accountSnapshotDao"/>
+		</property>
+		<property name="cacheKeyMap">
+			<map>
+				<entry key="V1" value="l3dj3grGHKxsh1gDUAAMlA" />
+			</map>
+		</property>
+		<property name="currentKeyVersion" value="V1" />
+	</bean> 
+	
+	<!-- 资金管理service -->
+	<bean id="fundManagementService" class="com.esinotrans.payment.account.service.impl.FundManagementServiceImpl">
+		<property name="accountDao">
+			<ref bean="accountDao"/>
+		</property>
+		<property name="fundFrozenUnFrozenRecordDao">
+			<ref bean="fundFrozenUnFrozenRecordDao"/>
+		</property>
+		<property name="fundFrozenUnFrozenHistoryDao">
+			<ref bean="fundFrozenUnFrozenHistoryDao"/>
+		</property>
+		<property name="accountManagementRecordDao">
+			<ref bean="accountManagementRecordDao"/>
+		</property>
+		<property name="accountManagementService">
+			<ref bean="accountManagementService"/>
+		</property>
+		<property name="jdbcTemplate">
+			<ref bean="jdbcTemplate"/>
+		</property>
+		<property name="selfCheckTaskDao">
+			<ref bean="selfCheckTaskDao"/>
+		</property>
+		<property name="selfCheckFailureDetailDao">
+			<ref bean="selfCheckFailureDetailDao"/>
+		</property>
+	</bean> 
+	
+	<!-- 额度限制变更规则 service -->
+	<bean id="quotaLimitChangeRuleProcessor" class="com.esinotrans.payment.account.service.impl.DefaultQuotaLimitChangeRuleProcessor">
+		<property name="quotaLimitChangeRuleDao">
+			<ref bean="quotaLimitChangeRuleDao"/>
+		</property>
+	</bean> 
+	
+	<!-- 账号生成器 -->
+	<bean id="accountNumberGenerator" class="com.esinotrans.payment.account.numbergenerator.impl.AccountNumberGenerator">
+		<property name="serialNumDao">
+			<ref bean="serialNumDao"/>
+		</property>
+	</bean>
+
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="SelfCheckFailureDetail">
+
+	<insert id="insertSelfCheckFailureDetail" parameterType="SelfCheckFailureDetail">
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+			SELECT
+			SEQ_ACCOUNT_SELFAILDET.nextVal
+			AS
+			SERIAL FROM DUAL
+		</selectKey>
+		insert into TBL_SELF_CHECK_FAILURE_DETAIL
+		(
+			 ID, ACCOUNT_NO, TASK_NO, EVE_ACCOUNT_HIS_DESC, ACCOUNT_HIS_DESC, DESCRIBE
+		)
+		values
+		(
+			#{id,jdbcType=BIGINT},
+			#{accountNo,jdbcType=VARCHAR},
+			#{taskNo,jdbcType=VARCHAR},
+			#{eveAccountHistoryDesc,jdbcType=VARCHAR},
+			#{accountHistoryDesc,jdbcType=VARCHAR},
+			#{describe,jdbcType=VARCHAR}
+		)
+	</insert>
+</mapper>

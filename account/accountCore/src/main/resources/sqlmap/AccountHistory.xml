@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="AccountHistory">
+	<resultMap type="AccountHistory" id="AccountHistoryResultMap">
+		<id property="id" column="ID" javaType="long" />
+		<result property="tradeFlowId" column="TRADE_FLOW_ID" />
+		<result property="accountNo" column="ACCOUNT_NO"  />
+		<result property="direction" column="DIRECTION" jdbcType="VARCHAR"
+			javaType="com.esinotrans.payment.account.enums.FundChangeDirectionEnum"/>
+		<result property="amount" column="AMOUNT" javaType="java.math.BigDecimal" />
+		<result property="balance" column="BALANCE" javaType="java.math.BigDecimal" />
+		<result property="tradeType" column="TRADE_TYPE"/>
+		<result property="serialNum" column="SERIAL_NUM"  />
+		<result property="createDate" column="CREATE_DATE" javaType="java.util.Date" />
+		<result property="summary" column="SUMMARY" />
+		<result property="userRemark" column="USER_REMARK" />
+	</resultMap>
+	
+	<insert id="insertAccountHistory" parameterType="AccountHistory">
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+			SELECT
+			SEQ_ACCOUNT_ACCOUNTHISTORY.nextVal
+			AS
+			SERIAL FROM DUAL
+		</selectKey>
+		insert into TBL_ACCOUNT_HISTORY
+		(
+			ID, TRADE_FLOW_ID, ACCOUNT_NO, DIRECTION, TRADE_TYPE, 
+			AMOUNT,BALANCE, SERIAL_NUM, CREATE_DATE, SUMMARY,USER_REMARK,SYSTEM_REMARK 
+		)
+		values
+		(
+			#{id,jdbcType=BIGINT},
+			#{tradeFlowId,jdbcType=VARCHAR},
+			#{accountNo,jdbcType=VARCHAR},
+			#{direction,jdbcType=VARCHAR,javaType=com.esinotrans.payment.account.enums.FundChangeDirectionEnum},
+		    #{tradeType,jdbcType=VARCHAR},
+		    #{amount,jdbcType=DECIMAL},
+		    #{balance,jdbcType=DECIMAL},
+		    #{serialNum,jdbcType=BIGINT},
+		    #{createDate,jdbcType=TIMESTAMP},
+		    #{summary,jdbcType=VARCHAR},
+		    #{userRemark,jdbcType=VARCHAR},
+		    #{systemRemark,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="findAccountHistoryByAccountNo" resultMap="AccountHistoryResultMap" parameterType="java.util.Map">
+		select h.id,h.TRADE_FLOW_ID,h.ACCOUNT_NO,h.DIRECTION,h.AMOUNT,h.BALANCE,h.TRADE_TYPE,h.SERIAL_NUM,h.CREATE_DATE,h.SUMMARY,h.USER_REMARK
+		from TBL_ACCOUNT_HISTORY h 
+		<choose>
+		   <when test="startDate!=null and endDate!=null">
+		       where h.CREATE_DATE between #{startDate} AND #{endDate}  AND 
+		             h.ACCOUNT_NO = #{accountNo} 
+		   </when>
+		   <otherwise>
+		    where  h.ACCOUNT_NO = #{accountNo} 
+		   </otherwise>
+		</choose> order by h.serial_num desc
+	</select>
+	<select id="getAccountHistoryCountByAccountNo" resultType="int" parameterType="java.util.Map">
+		select count(h.id) from TBL_ACCOUNT_HISTORY h 
+		<where>
+		  h.ACCOUNT_NO = #{accountNo} 
+		  <if test="startDate!=null and endDate!=null">
+		  AND h.CREATE_DATE between #{startDate} AND #{endDate}
+		  </if>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="SelfCheckFailureDetail">
+
+	<insert id="insertSelfCheckFailureDetail" parameterType="SelfCheckFailureDetail">
+		insert into TBL_SELF_CHECK_FAILURE_DETAIL
+		(
+			  ACCOUNT_NO, TASK_NO, EVE_ACCOUNT_HIS_DESC, ACCOUNT_HIS_DESC, DESCRIBE
+		)
+		values
+		(
+			#{accountNo,jdbcType=VARCHAR},
+			#{taskNo,jdbcType=VARCHAR},
+			#{eveAccountHistoryDesc,jdbcType=VARCHAR},
+			#{accountHistoryDesc,jdbcType=VARCHAR},
+			#{describe,jdbcType=VARCHAR}
+		)
+	</insert>
+</mapper>
