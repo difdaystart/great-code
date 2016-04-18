@@ -1,105 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Manifest>
 	<Header>
-		<ManifestId></ManifestId>
-		<ActionCode></ActionCode>
-		<SendDate></SendDate>
-		<MerchantId></MerchantId>
-		<CarrierId></CarrierId>
-		<Version></Version>
+		<ManifestId>201604110001</ManifestId>
+		<ActionCode>A</ActionCode>
+		<SendDate>20160411143030</SendDate>
+		<MerchantId>XXX01</MerchantId>
+		<CarrierId>ECMS</CarrierId>
+		<Version>1.0</Version>
 	</Header>
 	<Shipments>
 		<Shipment>
-			<TrackNo></TrackNo>
-			<ECMSTrackNo></ECMSTrackNo>
-			<LastMileDeliveryNo></LastMileDeliveryNo>
-			<OrderNo></OrderNo>
-			<Mawb></Mawb>
-			<Description></Description>
-			<OrderDate></OrderDate>
-			<Weight></Weight>
-			<Length></Length>
-			<Width></Width>
-			<Height></Height>
-			<WeightUnit></WeightUnit>
-			<LengthUnit></LengthUnit>
-			<GoodsValue></GoodsValue>
-			<FreightValue></FreightValue>
-			<TaxValue></TaxValue>
-			<ActuralPaid></ActuralPaid>
-			<Insurance></Insurance>
-			<Currency></Currency>
-			<Danger></Danger>
-			<DangerDescription></DangerDescription>
-			<ShipRef1></ShipRef1>
-			<ShipRef2></ShipRef2>
-			<ShipRef3></ShipRef3>
-			<ShipRef4></ShipRef4>
-			<ShipRef5></ShipRef5>
-			<ShipRef6></ShipRef6>
+			<TrackNo>APEJFK0000000008</TrackNo>
+			<OrderNo>108-4039934-4021019</OrderNo>
+			<Mawb>99911112222</Mawb>
+			<Description>保温杯</Description>
+			<OrderDate>20160410143030</OrderDate>
+			<Weight>0.75</Weight>
+			<Length>10</Length>
+			<Width>10</Width>
+			<Height>30</Height>
+			<WeightUnit>kg</WeightUnit>
+			<LengthUnit>cm</LengthUnit>
+			<GoodsValue>371.4</GoodsValue>
+			<FreightValue>20.0</FreightValue>
+			<TaxValue>37.14</TaxValue>
+			<ActuralPaid>428.54</ActuralPaid>
+			<Insurance>0</Insurance>
+			<Currency>CNY</Currency>
+			<Danger>N</Danger>
 		</Shipment>
 	</Shipments>
 	<Contents>
 		<ContentItem>
-			<ProductCode></ProductCode>
-			<Brand></Brand>
-			<SubBrand></SubBrand>
-			<Name></Name>
-			<Description></Description>
-			<ExpHSCode></ExpHSCode>
-			<ImpHSCode></ImpHSCode>
-			<Quantity></Quantity>
-			<UnitPrice></UnitPrice>
-			<Country></Country>
-			<UnitWeight></UnitWeight>
-			<Specification></Specification>
-			<Url></Url>
-			<ManufactureDate></ManufactureDate>
-			<ItemRef1></ItemRef1>
-			<ItemRef2></ItemRef2>
-			<ItemRef3></ItemRef3>
-			<ItemRef4></ItemRef4>
-			<ItemRef5></ItemRef5>
-			<ItemRef6></ItemRef6>
+			<ProductCode>B00CHOUI8601</ProductCode>
+			<Brand>Zojirushi</Brand>
+			<Name>保温杯(Zojirushi)</Name>
+			<Description>保温杯</Description>
+			<Quantity>1</Quantity>
+			<UnitPrice>371.4</UnitPrice>
+			<Country>US</Country>
+			<UnitWeight>0.75</UnitWeight>
+			<Specification>10×10×30 cm</Specification>
 		</ContentItem>
 	</Contents>
 	<Consignee>
-		<FirstName></FirstName>
-		<LastName></LastName>
-		<Country></Country>
-		<State></State>
-		<City></City>
-		<ZipCode></ZipCode>
-		<Address1></Address1>
-		<Address2></Address2>
-		<Address3></Address3>
-		<CellPhone></CellPhone>
-		<Email></Email>
-		<RegisteredCellPhone></RegisteredCellPhone>
-		<RegisteredEmail></RegisteredEmail>
+		<FirstName>周</FirstName>
+		<LastName>星星</LastName>
+		<Country>CN</Country>
+		<State>浙江省</State>
+		<City>台州市</City>
+		<ZipCode>330000</ZipCode>
+		<Address1>临海市东塍镇屈家村 临海辉辉厂二楼</Address1>
+		<CellPhone>18535170001</CellPhone>
+		<Email>18535170001@ecmsglobal.com</Email>
 	</Consignee>
 	<Shipper>
-		<CompanyName></CompanyName>
-		<FirstName></FirstName>
-		<LastName></LastName>
-		<Country></Country>
-		<State></State>
-		<City></City>
-		<ZipCode></ZipCode>
-		<Address1></Address1>
-		<Address2></Address2>
-		<Address3></Address3>
-		<Phone></Phone>
-		<Email></Email>
+		<CompanyName>亚马逊</CompanyName>
+		<Country>US</Country>
+		<State>California</State>
+		<City>Los Angeles</City>
+		<ZipCode>90001</ZipCode>
+		<Address1>Los Angeles</Address1>
+		<Email>amazon@amazon.com</Email>
 	</Shipper>
 	<Buyer>
-		<IDType></IDType>
-		<IDName></IDName>
-		<IDNumber></IDNumber>
-		<Phone></Phone>
-		<Email></Email>
-		<PayCompany></PayCompany>
-		<PayConfNo></PayConfNo>
-		<PayRef1></PayRef1>
+		<IDType>1</IDType>
+		<IDName>周星星</IDName>
+		<IDNumber>620521199101111111</IDNumber>
+		<Phone>18535170001</Phone>
+		<Email>18535170001@ecmsglobal.com</Email>
+		<PayCompany>01</PayCompany>
 	</Buyer>
 </Manifest>

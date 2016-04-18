@@ -1,45 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Invoice>
 	<Header>
-		<MessageID></MessageID>
-		<ActionCode></ActionCode>
-		<CarrierId></CarrierId>
-		<MerchantId></MerchantId>
-		<SendDate></SendDate>
-		<Version></Version>
+		<MessageID>201604110002</MessageID>
+		<ActionCode>A</ActionCode>
+		<CarrierId>XXX01</CarrierId>
+		<MerchantId>ECMS</MerchantId>
+		<SendDate>20160413143001</SendDate>
+		<Version>1.0</Version>
 	</Header>
 	<InvoiceHead>
-		<InvoiceNumber></InvoiceNumber>
-		<InvoiceDate></InvoiceDate>
-		<Amount></Amount>
-		<InvoiceType></InvoiceType>
-		<Currency></Currency>
-		<WeightUnit></WeightUnit>
+		<InvoiceNumber>P51412015010001575</InvoiceNumber>
+		<InvoiceDate>20160413</InvoiceDate>
+		<Amount>37.14</Amount>
+		<InvoiceType>D</InvoiceType>
+		<Currency>CNY</Currency>
+		<WeightUnit>kg</WeightUnit>
 	</InvoiceHead>
 	<InvoiceItems>
 		<InvoiceItem>
-			<ECMSTrackNo></ECMSTrackNo>
-			<TrackNo></TrackNo>
-			<OrderNo></OrderNo>
-			<ShipMethod></ShipMethod>
-			<Amount></Amount>
-			<Weight></Weight>
-			<Charge>
-				<ChargeCode></ChargeCode>
-				<ChargeAmount></ChargeAmount>
-			</Charge>
-		</InvoiceItem>
-		<InvoiceItem>
-			<ECMSTrackNo></ECMSTrackNo>
-			<TrackNo></TrackNo>
-			<OrderNo></OrderNo>
-			<ShipMethod></ShipMethod>
-			<Amount></Amount>
-			<Weight></Weight>
-			<Charge>
-				<ChargeCode></ChargeCode>
-				<ChargeAmount></ChargeAmount>
-			</Charge>
+			<TrackNo>APEJFK0000000008</TrackNo>
+			<OrderNo>108-4039934-4021019</OrderNo>
+			<ShipMethod>Standard</ShipMethod>
+			<Amount>37.14</Amount>
+			<Weight>0.75</Weight>
 		</InvoiceItem>
 	</InvoiceItems>
 </Invoice>

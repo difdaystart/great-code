@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MawbInfo>
 	<Header>
-		<Version></Version>
-		<ActionCode></ActionCode>
-		<SendDate></SendDate>
-		<MerchantId></MerchantId>
-		<CarrierId></CarrierId>
+		<Version>1.0</Version>
+		<ActionCode>A</ActionCode>
+		<SendDate>20160411143030</SendDate>
+		<MerchantId>XXX01</MerchantId>
+		<CarrierId>ECMS</CarrierId>
 	</Header>
 	<MAWBNo>
-		<PalletQuantity></PalletQuantity>
-		<PackageQuantity></PackageQuantity>
-		<FlightNo></FlightNo>
-		<GrossWeight></GrossWeight>
-		<OriginPort></OriginPort>
-		<ViaPort></ViaPort>
-		<DestinationPort></DestinationPort>
-		<ETD></ETD>
-		<ETA></ETA>
-		<ATD></ATD>
-		<ATA></ATA>
+		<MAWBNo>99911112222</MAWBNo>
+		<PalletQuantity>10</PalletQuantity>
+		<PackageQuantity>2000</PackageQuantity>
+		<FlightNo>MH3701</FlightNo>
+		<GrossWeight>500</GrossWeight>
+		<OriginPort>SCS</OriginPort>
+		<DestinationPort>CAN</DestinationPort>
+		<ETD>20160411143030</ETD>
+		<ETA>20160412143030</ETA>
+		<ATD>20160411143035</ATD>
+		<ATA>20160412143035</ATA>
 	</MAWBNo>
 </MawbInfo>

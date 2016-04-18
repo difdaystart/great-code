@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tracking>
-	<MerchantId></MerchantId>
-	<CarrierId></CarrierId>
+	<MerchantId>XXX01</MerchantId>
+	<CarrierId>ECMS</CarrierId>
 	<PackageTrackingInfos>
 		<PackageTrackingInfo>
-			<TrackNo></TrackNo>
+			<TrackNo>APEJFK0000000008</TrackNo>
 			<TrackingEventHistory>
 				<TrackingEventDetail>
-					<EventCode></EventCode>
-					<EventCodeDesc></EventCodeDesc>
-					<EventDateTime></EventDateTime>
+					<EventCode>EVENT302</EventCode>
+					<EventCodeDesc>SENT_SCAN</EventCodeDesc>
+					<EventDateTime>20160413113030CST</EventDateTime>
 				</TrackingEventDetail>
 				<TrackingEventDetail>
-					<EventCode></EventCode>
-					<EventCodeDesc></EventCodeDesc>
-					<EventDateTime></EventDateTime>
+					<EventCode>EVENT301</EventCode>
+					<EventCodeDesc>SIGNED</EventCodeDesc>
+					<EventDateTime>20160414113031CST</EventDateTime>
 				</TrackingEventDetail>
 			</TrackingEventHistory>
 		</PackageTrackingInfo>
 		<PackageTrackingInfo>
-			<TrackNo></TrackNo>
+			<TrackNo>APEJFK0000000009</TrackNo>
 			<TrackingEventHistory>
 				<TrackingEventDetail>
-					<EventCode></EventCode>
-					<EventCodeDesc></EventCodeDesc>
-					<EventDateTime></EventDateTime>
+					<EventCode>EVENT101</EventCode>
+					<EventCodeDesc>ARRIVAL</EventCodeDesc>
+					<EventDateTime>20160412113031CST</EventDateTime>
 				</TrackingEventDetail>
 				<TrackingEventDetail>
-					<EventCode></EventCode>
-					<EventCodeDesc></EventCodeDesc>
-					<EventDateTime></EventDateTime>
+					<EventCode>EVENT102</EventCode>
+					<EventCodeDesc>DEPARTURE</EventCodeDesc>
+					<EventDateTime>20160413113032CST</EventDateTime>
 				</TrackingEventDetail>
 			</TrackingEventHistory>
 		</PackageTrackingInfo>
