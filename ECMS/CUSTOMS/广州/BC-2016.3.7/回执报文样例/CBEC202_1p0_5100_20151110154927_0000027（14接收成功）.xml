@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CBEC xsi:schemaLocation="urn:gacc:datamodel:GZ:CBEC202:1 CBEC202_DeclarationResponse.xsd" xmlns="urn:gacc:datamodel:GZ:CBEC202:1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Head>
+		<MessageID>CBEC202_1p0_5100_20151110154927_0000027</MessageID>
+		<FunctionCode>2</FunctionCode>
+		<MessageType>CBEC202</MessageType>
+		<SenderID>5100</SenderID>
+		<ReceiverID>PTE51011400000000001</ReceiverID>
+		<SendTime>2015-11-10T15:49:27.404</SendTime>
+		<Version>1.0</Version>
+	</Head>
+	<Response>
+		<CreationTime>2015-11-10T15:49:27.404</CreationTime>
+		<Declaration>
+			<Declarant>
+				<Company>
+					<RegistrationNumber>PTE51011400000000001</RegistrationNumber>
+				</Company>
+			</Declarant>
+			<ECommercePlatform>
+				<InternetDomainName>www.xx.com</InternetDomainName>
+			</ECommercePlatform>
+			<DocumentID>ad23a040a57641ceb07d5cfa832fdc</DocumentID>
+			<DocumentTypeCode>CBEC102</DocumentTypeCode>
+		</Declaration>
+		<Main>
+			<Code>14</Code>
+			<Text>清单:ad23a040a57641ceb07d5cfa832fdc接收成功。</Text>
+		</Main>
+	</Response>
+</CBEC>

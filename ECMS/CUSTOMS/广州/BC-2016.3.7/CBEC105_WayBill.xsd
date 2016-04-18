@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:gacc:datamodel:GZ:CBEC105:1" xmlns:cbec="urn:gacc:datamodel:GZ:CBEC105:1" targetNamespace="urn:gacc:datamodel:GZ:CBEC105:1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--跨境电子商务，运单报文定义-->
+	<xs:element name="CBEC">
+		<xs:annotation>
+			<xs:documentation>跨境电子商务报文(root)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Head" type="HeadType">
+					<xs:annotation>
+						<xs:documentation>报文头数据段</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Declaration">
+					<xs:annotation>
+						<xs:documentation>报送数据段</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Declarant" type="DeclarantType">
+								<xs:annotation>
+									<xs:documentation>报送者信息段</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="WayBill" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>运单数据段</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ID">
+											<xs:annotation>
+												<xs:documentation>运单号</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="30"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ECommercePlatForm">
+											<xs:annotation>
+												<xs:documentation>电商平台信息段</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="InternetDomainName">
+														<xs:annotation>
+															<xs:documentation>互联网域名</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+																<xs:maxLength value="100"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Name" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>名称</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="0"/>
+																<xs:maxLength value="100"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="LogisticsCompany">
+											<xs:annotation>
+												<xs:documentation>物流公司信息段</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="RegistrationNumber">
+														<xs:annotation>
+															<xs:documentation>物流公司备案号</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+																<xs:maxLength value="30"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Name">
+														<xs:annotation>
+															<xs:documentation>物流公司名称</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+																<xs:maxLength value="100"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="LogisticsOrderID">
+											<xs:annotation>
+												<xs:documentation>物流订单号</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="30"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="IEFlag">
+											<xs:annotation>
+												<xs:documentation>进出口标识</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TotalAmount">
+											<xs:annotation>
+												<xs:documentation>运送货物总价</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="PriceType">
+														<xs:attribute name="currencyCode" use="required">
+															<xs:annotation>
+																<xs:documentation>币制代码</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:length value="3"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Freight">
+											<xs:annotation>
+												<xs:documentation>运费</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="PriceType">
+														<xs:attribute name="currencyCode" use="required">
+															<xs:annotation>
+																<xs:documentation>币制代码</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:length value="3"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="InsuranceCharges">
+											<xs:annotation>
+												<xs:documentation>保费</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="PriceType">
+														<xs:attribute name="currencyCode" use="required">
+															<xs:annotation>
+																<xs:documentation>币制</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:length value="3"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="CargoDescription">
+											<xs:annotation>
+												<xs:documentation>货物信息</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="1024"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Packaging">
+											<xs:annotation>
+												<xs:documentation>包装数据段</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="NoticeNumber">
+														<xs:annotation>
+															<xs:documentation>包裹单号</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+																<xs:maxLength value="100"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Quantity" type="xs:int">
+														<xs:annotation>
+															<xs:documentation>包裹件数</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="TotalWeight">
+											<xs:annotation>
+												<xs:documentation>总重量</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Gross">
+														<xs:annotation>
+															<xs:documentation>毛重</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:decimal">
+																<xs:totalDigits value="19"/>
+																<xs:fractionDigits value="5"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Net">
+														<xs:annotation>
+															<xs:documentation>净重</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:decimal">
+																<xs:totalDigits value="19"/>
+																<xs:fractionDigits value="5"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Consignor">
+											<xs:annotation>
+												<xs:documentation>发件人数据段</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Name">
+														<xs:annotation>
+															<xs:documentation>发件人名称</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+																<xs:maxLength value="100"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Address">
+														<xs:annotation>
+															<xs:documentation>发件人地址数据段</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Line">
+																	<xs:annotation>
+																		<xs:documentation>详细街道地址</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:minLength value="1"/>
+																			<xs:maxLength value="512"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="CityName">
+																	<xs:annotation>
+																		<xs:documentation>城市名</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:minLength value="1"/>
+																			<xs:maxLength value="100"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="CountrySubDivisionID" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>省市区代码</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:minLength value="0"/>
+																			<xs:maxLength value="6"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="CountrySubDivisionName" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>省市区名称</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:minLength value="0"/>
+																			<xs:maxLength value="100"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="CountryCode">
+																	<xs:annotation>
+																		<xs:documentation>国家（地区）代码</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:length value="3"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="PhoneNumber" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>联系电话号码</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="0"/>
+																<xs:maxLength value="50"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="IDNumber" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>证件号码</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="IDNumberType">
+																	<xs:attribute name="TypeCode" use="required">
+																		<xs:annotation>
+																			<xs:documentation>证件类型代码</xs:documentation>
+																		</xs:annotation>
+																		<xs:simpleType>
+																			<xs:restriction base="xs:string">
+																				<xs:minLength value="1"/>
+																				<xs:maxLength value="2"/>
+																			</xs:restriction>
+																		</xs:simpleType>
+																	</xs:attribute>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Consignee">
+											<xs:annotation>
+												<xs:documentation>收件人数据段</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Name">
+														<xs:annotation>
+															<xs:documentation>收件人名称</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+																<xs:maxLength value="100"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Address">
+														<xs:annotation>
+															<xs:documentation>收件人地址数据段</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Line">
+																	<xs:annotation>
+																		<xs:documentation>详细街道地址</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:minLength value="1"/>
+																			<xs:maxLength value="512"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="CityName">
+																	<xs:annotation>
+																		<xs:documentation>城市名</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:minLength value="1"/>
+																			<xs:maxLength value="100"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="CountrySubDivisionID" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>省市区代码</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:minLength value="0"/>
+																			<xs:maxLength value="6"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="CountrySubDivisionName" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>省市区名称</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:minLength value="0"/>
+																			<xs:maxLength value="100"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="CountryCode">
+																	<xs:annotation>
+																		<xs:documentation>国家（地区）代码</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:length value="3"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="PhoneNumber" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>联系电话号码</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="0"/>
+																<xs:maxLength value="50"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="IDNumber" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>证件号码</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="IDNumberType">
+																	<xs:attribute name="TypeCode" use="required">
+																		<xs:annotation>
+																			<xs:documentation>证件类型代码</xs:documentation>
+																		</xs:annotation>
+																		<xs:simpleType>
+																			<xs:restriction base="xs:string">
+																				<xs:minLength value="1"/>
+																				<xs:maxLength value="2"/>
+																			</xs:restriction>
+																		</xs:simpleType>
+																	</xs:attribute>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="CreateDate" type="xs:dateTime">
+											<xs:annotation>
+												<xs:documentation>运单创建日期
+YYYY-MM-DDThh:mm:ss</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Notes" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>备注</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="0"/>
+													<xs:maxLength value="1024"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="WayBillID">
+						<xs:annotation>
+							<xs:documentation>同一报文里，同一物流公司的运单号唯一</xs:documentation>
+						</xs:annotation>
+						<xs:selector xpath="cbec:WayBill"/>
+						<xs:field xpath="cbec:LogisticsCompany/cbec:RegistrationNumber"/>
+						<xs:field xpath="cbec:ID"/>
+					</xs:unique>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="HeadType">
+		<xs:annotation>
+			<xs:documentation>报文头类</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MessageID">
+				<xs:annotation>
+					<xs:documentation>报文编号</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="64"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FunctionCode">
+				<xs:annotation>
+					<xs:documentation>报文功能代码</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="2"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="MessageType" fixed="CBEC105">
+				<xs:annotation>
+					<xs:documentation>报文类型代码</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SenderID">
+				<xs:annotation>
+					<xs:documentation>发送方代码</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ReceiverID">
+				<xs:annotation>
+					<xs:documentation>接受方代码</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SendTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>发送时间
+YYYY-MM-DDThh:mm:ss</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Version" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>报文版本号</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeclarantType">
+		<xs:annotation>
+			<xs:documentation>申报者类</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="Company">
+				<xs:annotation>
+					<xs:documentation>公司</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="RegistrationNumber">
+							<xs:annotation>
+								<xs:documentation>备案号</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Person">
+				<xs:annotation>
+					<xs:documentation>个人</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Name">
+							<xs:annotation>
+								<xs:documentation>名称</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="100"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IDNumber">
+							<xs:annotation>
+								<xs:documentation>证件号码</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="IDNumberType">
+										<xs:attribute name="TypeCode" use="required">
+											<xs:annotation>
+												<xs:documentation>证件类型代码</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:simpleType name="IDNumberType">
+		<xs:annotation>
+			<xs:documentation>证件号码类</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PriceType">
+		<xs:annotation>
+			<xs:documentation>价格类</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="19"/>
+			<xs:fractionDigits value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tracking>
+	<MerchantId></MerchantId>
+	<CarrierId></CarrierId>
+	<PackageTrackingInfos>
+		<PackageTrackingInfo>
+			<TrackNo></TrackNo>
+			<TrackingEventHistory>
+				<TrackingEventDetail>
+					<EventCode></EventCode>
+					<EventCodeDesc></EventCodeDesc>
+					<EventDateTime></EventDateTime>
+				</TrackingEventDetail>
+				<TrackingEventDetail>
+					<EventCode></EventCode>
+					<EventCodeDesc></EventCodeDesc>
+					<EventDateTime></EventDateTime>
+				</TrackingEventDetail>
+			</TrackingEventHistory>
+		</PackageTrackingInfo>
+		<PackageTrackingInfo>
+			<TrackNo></TrackNo>
+			<TrackingEventHistory>
+				<TrackingEventDetail>
+					<EventCode></EventCode>
+					<EventCodeDesc></EventCodeDesc>
+					<EventDateTime></EventDateTime>
+				</TrackingEventDetail>
+				<TrackingEventDetail>
+					<EventCode></EventCode>
+					<EventCodeDesc></EventCodeDesc>
+					<EventDateTime></EventDateTime>
+				</TrackingEventDetail>
+			</TrackingEventHistory>
+		</PackageTrackingInfo>
+	</PackageTrackingInfos>
+</Tracking>

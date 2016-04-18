@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CBEC xsi:schemaLocation="urn:gacc:datamodel:GZ:CBEC202:1 CBEC202_DeclarationResponse.xsd" xmlns="urn:gacc:datamodel:GZ:CBEC202:1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Head>
+		<MessageID>CBEC202_1p0_5100_20151110154951_0000033</MessageID>
+		<FunctionCode>2</FunctionCode>
+		<MessageType>CBEC202</MessageType>
+		<SenderID>5100</SenderID>
+		<ReceiverID>PTE51011400000000001</ReceiverID>
+		<SendTime>2015-11-10T15:49:51.770</SendTime>
+		<Version>1.0</Version>
+	</Head>
+	<Response>
+		<CreationTime>2015-11-10T15:49:51.770</CreationTime>
+		<Declaration>
+			<Declarant>
+				<Company>
+					<RegistrationNumber>IE150210000000</RegistrationNumber>
+				</Company>
+			</Declarant>
+			<ECommercePlatform>
+				<InternetDomainName>www.xx.com</InternetDomainName>
+			</ECommercePlatform>
+			<LogisticsCompany>
+				<RegistrationNumber>IE150210000000</RegistrationNumber>
+			</LogisticsCompany>
+			<DocumentID>99087665</DocumentID>
+			<DocumentTypeCode>CBEC102</DocumentTypeCode>
+		</Declaration>
+		<Main>
+			<Code>13</Code>
+			<Text>清单中的运单号[及物流公司备案号]已报关，不接受重复申报！(运单号:123456)</Text>
+		</Main>
+	</Response>
+</CBEC>

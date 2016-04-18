@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:gacc:datamodel:GZ:CBEC202:1" targetNamespace="urn:gacc:datamodel:GZ:CBEC202:1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--跨境电子商务通用申报回执报文定义-->
+	<xs:element name="CBEC">
+		<xs:annotation>
+			<xs:documentation>跨境电子商务报文(root)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Head" type="HeadType">
+					<xs:annotation>
+						<xs:documentation>报文头数据段</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Response" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>回执数据段</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CreationTime" type="xs:dateTime">
+								<xs:annotation>
+									<xs:documentation>回执生成时间
+YYYY-MM-DDThh:mm:ss.fff+08:00</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Declaration">
+								<xs:annotation>
+									<xs:documentation>申报/报送数据段</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Declarant" type="DeclarantType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>申报/报送者数据段</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ECommercePlatform" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>电商平台数据段</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="InternetDomainName">
+														<xs:annotation>
+															<xs:documentation>电商平台互联网域名</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+																<xs:maxLength value="100"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="PaymentCompany" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>支付公司数据段</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="RegistrationNumber" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>支付公司备案号</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="0"/>
+																<xs:maxLength value="30"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Name">
+														<xs:annotation>
+															<xs:documentation>支付公司名称</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+																<xs:maxLength value="100"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="LogisticsCompany" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>物流公司数据段</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="RegistrationNumber">
+														<xs:annotation>
+															<xs:documentation>物流公司备案号</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+																<xs:maxLength value="30"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DocumentID">
+											<xs:annotation>
+												<xs:documentation>申报/报送单据编号</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="128"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="DocumentTypeCode">
+											<xs:annotation>
+												<xs:documentation>申报/报送单据类型</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Main" type="BaseResponseType">
+								<xs:annotation>
+									<xs:documentation>主回执数据段</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>申报/报送项回执数据段</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ID">
+											<xs:annotation>
+												<xs:documentation>申报/报送项编号</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="30"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Response" type="BaseResponseType">
+											<xs:annotation>
+												<xs:documentation>回执信息数据段</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="HeadType">
+		<xs:annotation>
+			<xs:documentation>报文头类</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MessageID">
+				<xs:annotation>
+					<xs:documentation>报文编号</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="64"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FunctionCode">
+				<xs:annotation>
+					<xs:documentation>报文功能代码</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="2"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="MessageType" fixed="CBEC202">
+				<xs:annotation>
+					<xs:documentation>报文类型代码</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SenderID">
+				<xs:annotation>
+					<xs:documentation>发送方代码</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ReceiverID" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>接收方代码</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SendTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>发送时间
+YYYY-MM-DDThh:mm:ss.fff+08:00</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Version">
+				<xs:annotation>
+					<xs:documentation>报文版本号</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeclarantType">
+		<xs:annotation>
+			<xs:documentation>申报者类</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="Company">
+				<xs:annotation>
+					<xs:documentation>公司</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="RegistrationNumber">
+							<xs:annotation>
+								<xs:documentation>备案号</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Person">
+				<xs:annotation>
+					<xs:documentation>个人</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Name">
+							<xs:annotation>
+								<xs:documentation>名称</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="100"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IDNumber">
+							<xs:annotation>
+								<xs:documentation>证件号码</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="IDNumberType">
+										<xs:attribute name="TypeCode" use="required">
+											<xs:annotation>
+												<xs:documentation>证件类型代码</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="BaseResponseType">
+		<xs:annotation>
+			<xs:documentation>基本回执信息类</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Code">
+				<xs:annotation>
+					<xs:documentation>回执类型代码</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Data" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>回执数据</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="256"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Text">
+				<xs:annotation>
+					<xs:documentation>回执文本</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="8000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="IDNumberType">
+		<xs:annotation>
+			<xs:documentation>证件号码类</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

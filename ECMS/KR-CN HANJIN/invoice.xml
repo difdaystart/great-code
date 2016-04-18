@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Invoice>
+	<Header>
+		<MessageID></MessageID>
+		<ActionCode></ActionCode>
+		<CarrierId></CarrierId>
+		<MerchantId></MerchantId>
+		<SendDate></SendDate>
+		<Version></Version>
+	</Header>
+	<InvoiceHead>
+		<InvoiceNumber></InvoiceNumber>
+		<InvoiceDate></InvoiceDate>
+		<Amount></Amount>
+		<InvoiceType></InvoiceType>
+		<Currency></Currency>
+		<WeightUnit></WeightUnit>
+	</InvoiceHead>
+	<InvoiceItems>
+		<InvoiceItem>
+			<ECMSTrackNo></ECMSTrackNo>
+			<TrackNo></TrackNo>
+			<OrderNo></OrderNo>
+			<ShipMethod></ShipMethod>
+			<Amount></Amount>
+			<Weight></Weight>
+			<Charge>
+				<ChargeCode></ChargeCode>
+				<ChargeAmount></ChargeAmount>
+			</Charge>
+		</InvoiceItem>
+		<InvoiceItem>
+			<ECMSTrackNo></ECMSTrackNo>
+			<TrackNo></TrackNo>
+			<OrderNo></OrderNo>
+			<ShipMethod></ShipMethod>
+			<Amount></Amount>
+			<Weight></Weight>
+			<Charge>
+				<ChargeCode></ChargeCode>
+				<ChargeAmount></ChargeAmount>
+			</Charge>
+		</InvoiceItem>
+	</InvoiceItems>
+</Invoice>

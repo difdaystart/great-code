@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MawbInfo>
+	<Header>
+		<Version></Version>
+		<ActionCode></ActionCode>
+		<SendDate></SendDate>
+		<MerchantId></MerchantId>
+		<CarrierId></CarrierId>
+	</Header>
+	<MAWBNo>
+		<PalletQuantity></PalletQuantity>
+		<PackageQuantity></PackageQuantity>
+		<FlightNo></FlightNo>
+		<GrossWeight></GrossWeight>
+		<OriginPort></OriginPort>
+		<ViaPort></ViaPort>
+		<DestinationPort></DestinationPort>
+		<ETD></ETD>
+		<ETA></ETA>
+		<ATD></ATD>
+		<ATA></ATA>
+	</MAWBNo>
+</MawbInfo>
